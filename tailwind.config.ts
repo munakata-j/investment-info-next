@@ -15,6 +15,16 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      minWidth: {
+        '300': '300px', // min-w-300として使用
+        '250': '250px',  // min-w-250として使用
+        '100': '100px'
+      },
+      maxWidth: {
+        '300': '300px', // max-w-300として使用
+        '250': '250px',  // max-w-250として使用
+        '100': '100px'
+      },
     },
   },
   darkMode: "class",
