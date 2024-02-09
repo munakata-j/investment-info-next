@@ -1,5 +1,5 @@
 import {SearchIcon} from "@nextui-org/shared-icons";
-import {Input} from "@nextui-org/react";
+import {Button, Input} from "@nextui-org/react";
 import {SearchSelectBoxComponent} from "@/components/SearchSelectBoxComponent";
 const SearchComponent = () => {
     return (
@@ -20,6 +20,7 @@ const SearchComponent = () => {
                 <div className="p-2 min-w-250">
                     <SearchSelectBoxComponent/>
                 </div>
+                <Button>検索</Button>
             </div>
         </>
     )

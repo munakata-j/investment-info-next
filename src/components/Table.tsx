@@ -9,6 +9,7 @@ import {
     Button
 } from "@nextui-org/react";
 import {stockInfoListSampleResponse} from "@/config/config";
+import DetailModal from "@/components/ModalComponent";
 
 const colors = ["default", "primary", "secondary", "success", "warning", "danger"];
 
@@ -28,9 +29,11 @@ export default function TableComponent() {
                     <TableColumn>銘柄名</TableColumn>
                     <TableColumn>市場コード</TableColumn>
                     <TableColumn>市場名</TableColumn>
-                    <TableColumn>業種コード</TableColumn>
                     <TableColumn>業種名</TableColumn>
-                    <TableColumn>市場価格</TableColumn>
+                    <TableColumn>高値</TableColumn>
+                    <TableColumn>安値</TableColumn>
+                    <TableColumn>終値</TableColumn>
+                    <TableColumn>取引量</TableColumn>
                     <TableColumn>アクション</TableColumn>
                 </TableHeader>
                 <TableBody>
@@ -40,10 +43,12 @@ export default function TableComponent() {
                             <TableCell>{item.companyname}</TableCell>
                             <TableCell>{item.marketcode}</TableCell>
                             <TableCell>{item.marketcodename}</TableCell>
-                            <TableCell>{item.sector17code}</TableCell>
                             <TableCell>{item.sector17codename}</TableCell>
-                            <TableCell>{item.marketprice.map(val => (val.Close))}</TableCell>
-                            <TableCell><Button>詳細</Button></TableCell>
+                            <TableCell>{item.marketprice.map(val => (val.High))} 円</TableCell>
+                            <TableCell>{item.marketprice.map(val => (val.Low))} 円</TableCell>
+                            <TableCell>{item.marketprice.map(val => (val.Close))} 円</TableCell>
+                            <TableCell>{item.marketprice.map(val => (val.Volume))} 株</TableCell>
+                            <TableCell><DetailModal/></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
