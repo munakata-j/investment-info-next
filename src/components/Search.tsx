@@ -4,6 +4,8 @@ import {SearchSelectBoxComponent} from "@/components/SearchSelectBoxComponent";
 import {useExternalApi} from "@/hooks/useExternalApi";
 import {ChangeEvent, useState} from "react";
 import { useImmer } from 'use-immer';
+import {useStockInfoListContext} from "@/context/useStockInfoListContext";
+import {useSearchParameters} from "@/context/SearchParamsContext";
 export interface searchParameter {
     code?: string,
     companyname?: string,
@@ -12,26 +14,33 @@ export interface searchParameter {
 }
 const SearchComponent = () => {
     const {getStockInfoListApi} = useExternalApi()
-    const [paramsImmer, setParamasImmer] = useImmer<searchParameter>({})
+    const { params, setParams } = useSearchParameters();
+    const { dispatch } = useStockInfoListContext();
     const onClickGetStockInfoList = async () => {
+        dispatch({
+            type: "REQUEST"
+        })
         const requestParams = {
-            code: paramsImmer.code ? paramsImmer.code : "",
+            code: params.code ? params.code : "",
             companyname: "",
-            sector17code: paramsImmer.sector17code ? paramsImmer.sector17code : "",
-            page: paramsImmer.page ? paramsImmer.page.toString(): ""
+            sector17code: params.sector17code ? params.sector17code : "",
+            page: params.page ? params.page.toString(): ""
         }
         const res = await getStockInfoListApi(requestParams)
-        console.log("<<<<<<<<<<<<<< res -> ", res)
+        dispatch({
+            type: "SUCCESS",
+            payload: res
+        })
     }
 
     const onChangeInputCode = (e: ChangeEvent<HTMLInputElement>) => {
-        setParamasImmer(draft => {
+        setParams(draft => {
             draft.code = e.target.value
         })
     }
 
     const onChangeSelectSectorCode = (e: ChangeEvent<HTMLSelectElement>) => {
-        setParamasImmer(draft => {
+        setParams(draft => {
             draft.sector17code = e.target.value
         })
     }
