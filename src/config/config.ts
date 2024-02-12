@@ -41,6 +41,12 @@ export const stockInfoListSampleResponse = {
         "msg": ""
     }
 }
+export const initialGetStockInfo = {
+    getStockInfoList: stockInfoListSampleResponse,
+    loading: true,
+    error: null,
+
+}
 export const sampleDetailStockResponse = {
     "code": "200",
     "msg": "",

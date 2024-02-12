@@ -13,7 +13,7 @@ const DetailModal = () => {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 scrollBehavior="outside"
-                size="2xl"
+                size="xl"
             >
                 <ModalContent>
                     {(onClose) => (
