@@ -1,5 +1,5 @@
 import {Tab, Tabs} from "@nextui-org/tabs";
-import {Card, CardBody, CardHeader} from "@nextui-org/card";
+import {Card, CardBody, CardFooter, CardHeader} from "@nextui-org/card";
 import {CompanyInfo, GetStockInfoDetailApiResponse, StockDetailFinancialData} from "@/types/type";
 import {Chip} from "@nextui-org/chip";
 import {useStockInfoDetailContext} from "@/context/StockInfoDetailContext";
@@ -108,6 +108,12 @@ export function CardComponent({companyInfo, stockDetailFinancialData}: Props) {
                                         </div>
                                     </div>
                                 </CardBody>
+                                <CardFooter>
+                                    <div className="flex gap-3">
+                                        <h3 className="text-sm">参考決算書開示日: </h3>
+                                        <h3 className="text-sm">{item.content.DisclosedDate}</h3>
+                                    </div>
+                                </CardFooter>
                             </Card>
                         ) : (
                             <Card>

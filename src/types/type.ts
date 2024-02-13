@@ -64,6 +64,7 @@ export interface GetStockInfoDetailApiResponse  {
             CashFlowsFromFinancingActivities: string;
             CashFlowsFromInvestingActivities: string;
             CashFlowsFromOperatingActivities: string;
+            DisclosedDate: string;
         };
         code: string;
         msg: string;

@@ -68,7 +68,7 @@ export default function TableComponent() {
                                 showShadow
                                 color="primary"
                                 page={parseInt(getStockInfoList.getStockInfoList.data.page)}
-                                total={getStockInfoList.getStockInfoList.data.size ? getStockInfoList.getStockInfoList.data.size : 10}
+                                total={getStockInfoList.getStockInfoList.data.size ? Math.ceil(getStockInfoList.getStockInfoList.data.size) / 20 : 10}
                                 onChange={handleOnChangePage}
                             />
                         </div>

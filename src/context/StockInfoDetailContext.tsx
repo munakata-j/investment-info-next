@@ -34,7 +34,8 @@ const initialState: GetStockInfoDetailState = {
                 CashAndEquivalents: "",
                 CashFlowsFromFinancingActivities: "",
                 CashFlowsFromInvestingActivities: "",
-                CashFlowsFromOperatingActivities: ""
+                CashFlowsFromOperatingActivities: "",
+                DisclosedDate: ""
             },
             code: "",
             msg: ""

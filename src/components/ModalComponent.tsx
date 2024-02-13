@@ -36,7 +36,7 @@ const DetailModal = ({item} :props) => {
                                 <p className="text-sm opacity-50">{item.code}</p>
                             </ModalHeader>
                             <ModalBody>
-                                <CardComponent
+                            <CardComponent
                                     companyInfo={item}
                                     stockDetailFinancialData={getStockInfoDetail.getStockInfoDetail}
                                 />
