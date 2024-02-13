@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {
     Table,
     TableHeader,
@@ -10,19 +10,25 @@ import {
 } from "@nextui-org/react";
 import DetailModal from "@/components/ModalComponent";
 import {useStockInfoListContext} from "@/context/useStockInfoListContext";
-import {useImmer} from "use-immer";
-import {searchParameter} from "@/components/Search";
 import {useExternalApi} from "@/hooks/useExternalApi";
 import {useSearchParameters} from "@/context/SearchParamsContext";
+import {useStockInfoDetailContext} from "@/context/StockInfoDetailContext";
 
 export default function TableComponent() {
     const { getStockInfoList, dispatch } = useStockInfoListContext();
+    const {getStockInfoDetail, stockInfoDetailDispatch} = useStockInfoDetailContext();
     const [pageNum, setPageNum] = useState(parseInt(getStockInfoList.getStockInfoList.data.page))
     const {getStockInfoListApi} = useExternalApi()
     const { params, setParams } = useSearchParameters();
+    const isInitialMount = useRef(true);
 
     useEffect(() => {
-        fetchData()
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+            return;
+        } else {
+            fetchData();
+        }
     }, [pageNum]);
     const fetchData = async () => {
         dispatch({
@@ -39,7 +45,9 @@ export default function TableComponent() {
             type: "SUCCESS",
             payload: res
         })
+
     }
+
     const handleOnChangePage = (num: number) => {
         setParams(draft => {
             draft.page = num
@@ -51,7 +59,6 @@ export default function TableComponent() {
             <Table
                 color="default"
                 selectionMode="multiple"
-                defaultSelectedKeys={["2", "3"]}
                 aria-label="Example static collection table"
                 bottomContent={
                         <div className="flex w-full justify-center">
@@ -61,7 +68,7 @@ export default function TableComponent() {
                                 showShadow
                                 color="primary"
                                 page={parseInt(getStockInfoList.getStockInfoList.data.page)}
-                                total={10}
+                                total={getStockInfoList.getStockInfoList.data.size ? getStockInfoList.getStockInfoList.data.size : 10}
                                 onChange={handleOnChangePage}
                             />
                         </div>
@@ -93,7 +100,7 @@ export default function TableComponent() {
                             <TableCell>{item?.marketprice?.map(val => (val?.Low))} 円</TableCell>
                             <TableCell>{item?.marketprice?.map(val => (val?.Close))} 円</TableCell>
                             <TableCell>{item?.marketprice?.map(val => (val?.Volume))} 株</TableCell>
-                            <TableCell><DetailModal/></TableCell>
+                            <TableCell><DetailModal item={item}/></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

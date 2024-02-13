@@ -1,4 +1,4 @@
-import {createContext, ReactNode, useContext, useEffect, useReducer} from "react";
+import {createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useReducer, useState} from "react";
 import {
     GetStockInfoListAction,
     GetStockInfoListState,
@@ -17,18 +17,17 @@ const  initialGetStockInfoList: GetStockInfoListState = {
         }
     }, loading: false
 }
-const StockInfoListContext = createContext<{getStockInfoList: GetStockInfoListState; dispatch: React.Dispatch<GetStockInfoListAction>} | undefined>(undefined)
+const StockInfoListContext = createContext<{getStockInfoList: GetStockInfoListState; dispatch: React.Dispatch<GetStockInfoListAction>; totalPage: number; setTotalPage: Dispatch<SetStateAction<number>>} | undefined>(undefined)
 
 interface StockInfoListContextProviderProps {
     children: ReactNode;
 }
 export const StockInfoListContextProvider: React.FC<StockInfoListContextProviderProps> = ({ children }) => {
     const [state, dispatch] = useReducer(useGetStockInfoReducer, initialGetStockInfoList);
-    useEffect(() => {
-        console.log("<<<<<<<<<<<<< ", state)
-    }, [state]);
+    const [totalPage, setTotalPage] = useState(state.getStockInfoList.data.size)
+
     return (
-        <StockInfoListContext.Provider value={{ getStockInfoList: state, dispatch }}>
+        <StockInfoListContext.Provider value={{ getStockInfoList: state, dispatch, totalPage, setTotalPage }}>
             {children}
         </StockInfoListContext.Provider>
     );

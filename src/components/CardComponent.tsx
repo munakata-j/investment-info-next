@@ -1,13 +1,14 @@
 import {Tab, Tabs} from "@nextui-org/tabs";
 import {Card, CardBody, CardHeader} from "@nextui-org/card";
-import {CompanyInfo, StockDetailFinancialData} from "@/types/type";
+import {CompanyInfo, GetStockInfoDetailApiResponse, StockDetailFinancialData} from "@/types/type";
 import {Chip} from "@nextui-org/chip";
+import {useStockInfoDetailContext} from "@/context/StockInfoDetailContext";
 interface Props {
     companyInfo: CompanyInfo,
-    stockDetailFinancialData: StockDetailFinancialData
+    stockDetailFinancialData: GetStockInfoDetailApiResponse
 }
 export function CardComponent({companyInfo, stockDetailFinancialData}: Props) {
-    let tabs = [
+   let tabs = [
         {
             id: "companyInfo",
             label: "銘柄概要",
@@ -15,7 +16,7 @@ export function CardComponent({companyInfo, stockDetailFinancialData}: Props) {
         {
             id: "stockDetailFinancialData",
             label: "参考指標",
-            content: stockDetailFinancialData},
+            content: stockDetailFinancialData.data.data},
         {
             id: "chart",
             label: "チャート",
