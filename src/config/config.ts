@@ -203,3 +203,27 @@ export const sector17map = [
         sector17name: "その他"
     },
 ]
+
+export const headerMapping = [
+    { name: "コード", key: "code" },
+    { name: "会社名", key: "companyname" },
+    { name: "業種コード", key: "sectorCode" },
+    { name: "業種名", key: "sectorName" },
+    { name: "市場名", key: "marketName" },
+    { name: "売上高", key: "NetSales" },
+    { name: "営業利益", key: "OperatingProfit" },
+    { name: "純利益", key: "Profit" },
+    { name: "営業利益率", key: "OperatingProfitMargin" },
+    { name: "純資産", key: "Equity" },
+    { name: "総資産", key: "TotalAssets" },
+    { name: "PER", key: "PER" },
+    { name: "配当利回り", key: "DividendYield" },
+    { name: "自己資本比率", key: "EquityToAssetRatio" },
+    { name: "PBR", key: "PBR" },
+    { name: "株価", key: "ClosePrice" },
+    { name: "現金および同等物", key: "CashAndEquivalents" },
+    { name: "財務活動によるキャッシュフロー", key: "CashFlowsFromFinancingActivities" },
+    { name: "投資活動によるキャッシュフロー", key: "CashFlowsFromInvestingActivities" },
+    { name: "営業活動によるキャッシュフロー", key: "CashFlowsFromOperatingActivities" },
+    { name: "開示日", key: "DisclosedDate" }
+];

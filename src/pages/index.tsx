@@ -17,12 +17,12 @@ export default function Home() {
                 <SearchParametersProvider>
                     <StockInfoDetailContextProvider>
                         <SearchComponent/>
-                        <div className="flex flex-col items-center justify-between">
-                            <div className="w-full flex justify-end p-2">
-                                <ExportCsvComponent/>
-                            </div>
+                        {/*<div className="flex flex-col items-center justify-between">*/}
+                        {/*    <div className="w-full flex justify-end p-2">*/}
+                        {/*        <ExportCsvComponent/>*/}
+                            {/*</div>*/}
                             <TableComponent/>
-                        </div>
+                        {/*</div>*/}
                     </StockInfoDetailContextProvider>
                 </SearchParametersProvider>
             </StockInfoListContextProvider>

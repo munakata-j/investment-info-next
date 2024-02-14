@@ -41,7 +41,7 @@ export function useExternalApi() {
     const postExportCsv = async (params?: any) => {
         // codesは配列
         const requestParameter = {
-            codes: params.codes
+            codes: params
         }
         try {
             const response = await fetch('http://localhost:3005/api/v1/export', {
